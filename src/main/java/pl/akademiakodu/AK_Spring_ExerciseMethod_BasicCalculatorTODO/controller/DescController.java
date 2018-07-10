@@ -7,7 +7,9 @@ package pl.akademiakodu.AK_Spring_ExerciseMethod_BasicCalculatorTODO.controller;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import pl.akademiakodu.AK_Spring_ExerciseMethod_BasicCalculatorTODO.models.Person;
 
 import java.util.Random;
 import java.util.Set;
@@ -41,7 +43,24 @@ public class DescController {
         map.put("lotto ", lotto);
         return "random";
 
+    }
+
+    @GetMapping("/form")
+    public String getForm(){
+        return"form";
+    }
+    @GetMapping("/result")
+    public String result(@RequestParam
+                         String firstName,
+                         @RequestParam String lastName
+                         ,ModelMap modelMap) {
+
+        Person person = new Person(firstName, lastName);
+        modelMap.put("person",person);
+
+        return "person";
+    }
 
     }
 
-}
+
